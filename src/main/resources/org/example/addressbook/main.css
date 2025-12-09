@@ -1,0 +1,29 @@
+.body {
+    -fx-background-image: url("images/background.png");
+    -fx-background-size: cover;
+    -fx-background-position: center;
+}
+.overlay {
+    -fx-background-color: rgba(0,0,0,0.3);
+}
+Button {
+-fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #57d2ff, #0a6f94);
+-fx-text-fill: white;
+-fx-cursor: hand;
+}
+#text {
+    -fx-font-size: 15px;
+}
+#labelBottom {
+    -fx-text-fill: white;
+}
+.labelEdit {
+     -fx-text-fill: white;
+}
+.tableColumn {
+    -fx-alignment: CENTER;;
+}
+#darken {
+-fx-fill: rgba(0, 0, 0, 0.20);
+}
+

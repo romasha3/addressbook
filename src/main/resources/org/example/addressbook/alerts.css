@@ -1,0 +1,23 @@
+.dialog-pane {
+    -fx-background-color: #D0E8FF;
+    -fx-border-color: #5DADE2;
+    -fx-border-width: 2px;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #5DADE2;
+    -fx-text-fill: white;
+}
+
+.dialog-pane .content.label {
+    -fx-text-fill: #1A5276;
+}
+
+.button-bar .button {
+    -fx-background-color: #5DADE2;
+    -fx-text-fill: white;
+}
+
+.button-bar .button:hover {
+    -fx-background-color: #85C1E9;
+}
