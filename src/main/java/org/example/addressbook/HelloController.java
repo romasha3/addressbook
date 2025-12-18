@@ -1,6 +1,7 @@
 package org.example.addressbook;
 
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,7 +36,14 @@ public class HelloController implements Initializable {
     private Button btnAdd;
 
     @FXML
+    private TextField txtSearch;
+    @FXML
+    private Button btnSearch;
+
+    @FXML
     private VBox scenePane;
+
+    private ObservableList<Person> backupList;
 
     private ColectionAddressBook colectionAddressBook = new ColectionAddressBook();
 
@@ -49,11 +57,16 @@ public class HelloController implements Initializable {
         columnPip.setCellValueFactory(new PropertyValueFactory<>("pip"));
         columnPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
 
-        colectionAddressBook.testData();
+        colectionAddressBook.fillTestData();
+
+        backupList = colectionAddressBook.getBackupList();
+
         tblAddressBook.setItems(colectionAddressBook.getPersonList());
 
         lblCount.setText("Кількість записів: " + colectionAddressBook.getPersonList().size());
         colectionAddressBook.getPersonList().addListener(this::onChange);
+
+        setupSearchField(txtSearch);
 
         try {
             fxmlLoaderEdit = new FXMLLoader(getClass().getResource("edit.fxml"));
@@ -63,6 +76,42 @@ public class HelloController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    private void setupSearchField(TextField textField) {
+        if (textField != null) {
+            textField.textProperty().addListener((observable, oldValue, newValue) -> {
+                actionSearch(null);
+            });
+        }
+    }
+
+
+    @FXML
+    public void actionSearch(ActionEvent event) {
+        String searchText = txtSearch.getText().toLowerCase().trim();
+
+        if (searchText.isEmpty()) {
+            if (colectionAddressBook.getPersonList().size() != backupList.size() ||
+                    !colectionAddressBook.getPersonList().containsAll(backupList)) {
+
+                colectionAddressBook.getPersonList().clear();
+                colectionAddressBook.getPersonList().addAll(backupList);
+            }
+            return;
+        }
+
+        colectionAddressBook.getPersonList().clear();
+
+        for (Person person : backupList) {
+            if (person.getPip().toLowerCase().contains(searchText) ||
+                    person.getPhone().toLowerCase().contains(searchText)) {
+
+                colectionAddressBook.getPersonList().add(person);
+            }
+        }
+    }
+
+
 
     private void onChange(ListChangeListener.Change<? extends Person> change) {
         lblCount.setText("Кількість записів: " + colectionAddressBook.getPersonList().size());
@@ -104,8 +153,6 @@ public class HelloController implements Initializable {
                     alert.showAndWait();
                 }
                 break;
-
-
         }
     }
 

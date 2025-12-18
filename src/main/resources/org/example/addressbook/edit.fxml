@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane id="editStackPane" prefHeight="150.0" prefWidth="400.0" styleClass="body" stylesheets="@main.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.addressbook.EditController">
+<StackPane id="editStackPane" prefHeight="150.0" prefWidth="400.0" styleClass="body" stylesheets="@main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.addressbook.EditController">
    <children>
       <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="400.0">
          <left>
